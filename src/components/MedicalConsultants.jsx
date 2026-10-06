@@ -12,7 +12,7 @@ export default function MedicalConsultants({ onSelectDoctor, onScrollToBooking, 
       experience: '16+ years of clinical practice in Jagdalpur & Bastar.',
       opd: 'Mon - Sat: 10:00 AM - 2:00 PM',
       department: 'Gynecology & Obstetrics',
-      image: '/images/dr-mamta-bansal-portrait.png',
+      image: `${import.meta.env.BASE_URL}images/dr-mamta-bansal-portrait.png`,
       badgeColor: 'bg-sky-50 text-[#0284c7] border-sky-200'
     },
     {
@@ -24,7 +24,7 @@ export default function MedicalConsultants({ onSelectDoctor, onScrollToBooking, 
       experience: '15+ years in reproductive medicine & female healthcare.',
       opd: 'Mon - Sat: 3:00 PM - 7:00 PM',
       department: 'Gynecology & IVF',
-      image: '/images/dr-s-bansal.jpg',
+      image: `${import.meta.env.BASE_URL}images/dr-s-bansal.jpg`,
       badgeColor: 'bg-emerald-50 text-emerald-700 border-emerald-200'
     },
     {

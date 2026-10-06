@@ -6,7 +6,7 @@ export const specialties = [
     icon: 'Baby',
     badge: 'Women\'s Health & Reproductive Medicine',
     color: 'sky',
-    image: '/images/hospital-building.jpg',
+    image: `${import.meta.env.BASE_URL}images/hospital-building.jpg`,
     doctors: [
       {
         id: 'dr-mamta-bansal',
@@ -15,7 +15,7 @@ export const specialties = [
         qualifications: 'MBBS, DGO, DNB (Obs & Gyn), Minimal Access Surgery Specialist',
         experience: '16+ Years Experience',
         opd: 'Mon - Sat: 10:00 AM - 2:00 PM',
-        image: '/images/dr-mamta-bansal-portrait.png',
+        image: `${import.meta.env.BASE_URL}images/dr-mamta-bansal-portrait.png`,
         bio: 'Dr. Mamta Bansal specializes in high-risk pregnancy care, painless vaginal deliveries, laparoscopic cystectomy/fibroid surgeries, and adolescent health.'
       },
       {
@@ -25,7 +25,7 @@ export const specialties = [
         qualifications: 'MBBS, MS (Obstetrics & Gynecology), Fellow in Reproductive Medicine',
         experience: '15+ Years Experience',
         opd: 'Mon - Sat: 3:00 PM - 7:00 PM',
-        image: '/images/dr-s-bansal.jpg',
+        image: `${import.meta.env.BASE_URL}images/dr-s-bansal.jpg`,
         bio: 'Dr. S. Bansal leads the IVF & Reproductive Medicine clinic, specializing in follicular tracking, AMH reserve workup, IUI, IVF/ICSI, and embryo transfer.'
       }
     ],
@@ -75,7 +75,7 @@ export const procedures = [
     duration: '14 - 20 Days Cycle',
     anesthesia: 'Mild Sedation for Retrieval',
     recovery: 'Same Day Discharge',
-    image: '/images/ivf-lab-facility.jpg',
+    image: `${import.meta.env.BASE_URL}images/ivf-lab-facility.jpg`,
     overview: 'IVF & ICSI are advanced assisted reproductive technologies designed to help couples achieve pregnancy. Oocytes are retrieved under ultrasound guidance and fertilized with sperm in our sterile embryology laboratory before precise transfer.',
     steps: [
       'Controlled Ovarian Stimulation with serial ultrasound tracking',

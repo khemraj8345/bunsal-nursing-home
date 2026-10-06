@@ -7,63 +7,63 @@ export default function Facilities({ onSelectImage, onOpenFacility }) {
       id: 'advanced-ot-anesthesia',
       title: 'Advanced Surgical OT & Anesthesia Workstation',
       description: 'Equipped with precision anesthesia delivery, multi-para vital sign monitors, surgical lights, and advanced mechanical ventilator.',
-      image: '/images/advanced-ot-anesthesia.jpg',
+      image: `${import.meta.env.BASE_URL}images/advanced-ot-anesthesia.jpg`,
       highlights: ['Advanced Mechanical Anesthesia Ventilator', 'Multi-parameter Vital Signs Cardiac Monitor', 'Sterile Overhead Surgical Light System']
     },
     {
       id: 'ivf-lab-ot',
       title: 'Modular Embryology & IVF Laboratory Suite',
       description: 'Sterile embryology laboratory workstation, ICSI micromanipulator, laminar airflow hoods, and gas-controlled incubators.',
-      image: '/images/ivf-lab-facility.jpg',
+      image: `${import.meta.env.BASE_URL}images/ivf-lab-facility.jpg`,
       highlights: ['Ultrasonic Oocyte Retrieval Workstation', 'Laminar Airflow Sterilization Unit', '24/7 Temperature & Gas Controlled Incubators']
     },
     {
       id: 'baby-warmer-resuscitation',
       title: 'Baby Resuscitation Unit & Baby Warmer',
       description: 'Dedicated radiant warmer and neonatal resuscitation unit for immediate post-delivery newborn stabilization and care.',
-      image: '/images/baby-warmer-resuscitation.jpg',
+      image: `${import.meta.env.BASE_URL}images/baby-warmer-resuscitation.jpg`,
       highlights: ['Microprocessor Temperature Controlled Warmer', 'Integrated Oxygen & Resuscitation Line', '24/7 Neonatal Monitoring Desk']
     },
     {
       id: 'mammography-unit',
       title: 'Digital Mammography Diagnostic Unit',
       description: 'State-of-the-art Hologic digital mammography system for precise breast cancer screening and early preventive diagnostics.',
-      image: '/images/mammography-unit.png',
+      image: `${import.meta.env.BASE_URL}images/mammography-unit.png`,
       highlights: ['High-Resolution Digital Mammography System', 'Low-Radiation Dose Imaging Protocol', 'Confidential Screening Suite']
     },
     {
       id: 'digital-cr-system',
       title: 'Agfa Digital CR Radiology System',
       description: 'Advanced Computerized Radiography (CR) system for rapid digital imaging processing and crystal-clear X-ray diagnostic reporting.',
-      image: '/images/digital-cr-system.jpg',
+      image: `${import.meta.env.BASE_URL}images/digital-cr-system.jpg`,
       highlights: ['Agfa High-Speed Digital CR Workstation', 'Instant High-Contrast Image Processing', 'PACS Connected Reporting Suite']
     },
     {
       id: 'digital-xray-unit',
       title: 'High-Frequency Digital X-Ray Diagnostic Unit',
       description: 'Precision digital X-ray machine with comfortable patient couch for comprehensive orthopedic, chest, and pelvic imaging.',
-      image: '/images/digital-xray-unit.png',
+      image: `${import.meta.env.BASE_URL}images/digital-xray-unit.png`,
       highlights: ['High-Frequency Precision Generator', 'Ergonomic Patient Examination Couch', 'Fast Digital Film Processing']
     },
     {
       id: 'dr-s-bansal-opd',
       title: 'Confidential Doctor OPD Consultation Chamber',
       description: 'Quiet, dignified meeting room for one-on-one medical counseling, reproductive health guidance, and patient privacy.',
-      image: '/images/dr-s-bansal.jpg',
+      image: `${import.meta.env.BASE_URL}images/dr-s-bansal.jpg`,
       highlights: ['1-on-1 Confidential Consultation Desk', 'Ultrasound Examination Couch', 'Digital Health Record System']
     },
     {
       id: 'mamta-bansal-opd',
       title: 'Gynecology & Obstetric Clinical OPD Unit',
       description: 'Dedicated examination suite led by Dr. Mamta Bansal for high-risk pregnancy screening and comprehensive gynecological care.',
-      image: '/images/dr-mamta-bansal.jpg',
+      image: `${import.meta.env.BASE_URL}images/dr-mamta-bansal.jpg`,
       highlights: ['Sonography & Fetal Tracking', 'High-Risk Pregnancy Evaluation', 'Preventive Women Health Checkups']
     },
     {
       id: 'hospital-building-campus',
       title: 'Bansal Hospital Campus & Inpatient Facility',
       description: 'Multi-specialty hospital facility in Demani Press Zone, Jagdalpur equipped for Obstetrics, IVF & Eye Care.',
-      image: '/images/hospital-building.jpg',
+      image: `${import.meta.env.BASE_URL}images/hospital-building.jpg`,
       highlights: ['In-house Pharmacy & Diagnostics', '24/7 Obstetric & Emergency Desk', 'Ample Parking & Wheelchair Access']
     }
   ];

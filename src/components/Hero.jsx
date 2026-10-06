@@ -86,7 +86,7 @@ export default function Hero({ onSelectCategory, onOpenWhatsApp, onScrollToBooki
             
             {/* Real Bansal Nursing Home Building Image */}
             <img
-              src="/images/hospital-building.jpg"
+              src={`${import.meta.env.BASE_URL}images/hospital-building.jpg`}
               alt="Bansal Nursing Home & IVF Center Building Facade in Jagdalpur"
               class="w-full h-[420px] sm:h-[460px] object-cover group-hover:scale-105 transition-transform duration-700 opacity-95"
             />

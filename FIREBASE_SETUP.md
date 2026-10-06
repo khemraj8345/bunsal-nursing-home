@@ -30,4 +30,8 @@ The web app is configured for Firebase project `bansal-nursing-home-193d7`.
 - Admins can read all bookings, change booking status, and create a pending booking. The Firestore rules also enforce admin authorization; hiding the portal in the UI is not the security boundary.
 - After editing rules, publish them in Firebase Console or deploy with `npx firebase-tools deploy --only firestore:rules`.
 
+## GitHub Pages
+
+The repository includes a GitHub Actions workflow that builds and deploys the Vite site from `main` to `https://khemraj8345.github.io/bunsal-nursing-home/`. In the repository's **Settings → Pages**, set the source to **GitHub Actions**. For Firebase sign-in on the published site, add `khemraj8345.github.io` under **Authentication → Settings → Authorized domains**.
+
 The JavaScript Firebase web configuration identifies the project and is included in the client app. Firestore Security Rules provide the access control; the web config is not a substitute for those rules.
