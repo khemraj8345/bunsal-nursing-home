@@ -1,0 +1,80 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function ownsUser(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    // Admin access is enforced here as well as in the interface. Requiring a
+    // verified email prevents someone from registering this address themselves.
+    function isAdmin() {
+      return signedIn()
+        && request.auth.token.email == 'pririsahu8@gmail.com'
+        && request.auth.token.email_verified == true;
+    }
+
+    function validBooking() {
+      return request.resource.data.keys().hasAll([
+          'userId', 'userEmail', 'fullName', 'phone', 'category', 'doctor',
+          'preferredDate', 'timeWindow', 'concern', 'referenceId', 'status', 'createdAt'
+        ])
+        && request.resource.data.keys().hasOnly([
+          'userId', 'userEmail', 'fullName', 'phone', 'category', 'doctor',
+          'preferredDate', 'timeWindow', 'concern', 'referenceId', 'status', 'createdAt', 'updatedAt'
+        ])
+        && request.resource.data.userId is string
+        && request.resource.data.userEmail is string
+        && request.resource.data.fullName is string
+        && request.resource.data.phone is string
+        && request.resource.data.category is string
+        && request.resource.data.doctor is string
+        && request.resource.data.preferredDate is string
+        && request.resource.data.timeWindow is string
+        && request.resource.data.concern is string
+        && request.resource.data.concern.size() <= 2000
+        && request.resource.data.referenceId is string
+        && request.resource.data.status == 'Pending'
+        && request.resource.data.createdAt is timestamp
+        && (!('updatedAt' in request.resource.data) || request.resource.data.updatedAt is timestamp);
+    }
+
+    match /users/{userId} {
+      allow read: if ownsUser(userId);
+      allow create, update: if ownsUser(userId)
+        && request.resource.data.uid == userId
+        && request.resource.data.keys().hasAll(['uid', 'fullName', 'email', 'lastLogin'])
+        && request.resource.data.keys().hasOnly([
+          'uid', 'fullName', 'email', 'phone', 'photoURL', 'lastLogin', 'createdAt'
+        ])
+        && request.resource.data.fullName is string
+        && request.resource.data.email is string
+        && request.resource.data.lastLogin is timestamp
+        && (!('phone' in request.resource.data) || request.resource.data.phone is string)
+        && (!('photoURL' in request.resource.data) || request.resource.data.photoURL is string)
+        && (!('createdAt' in request.resource.data) || request.resource.data.createdAt is timestamp);
+      allow delete: if false;
+    }
+
+    match /bookings/{bookingId} {
+      allow read: if isAdmin()
+        || (signedIn() && resource.data.userId == request.auth.uid);
+
+      allow create: if validBooking()
+        && (isAdmin() || (signedIn() && request.resource.data.userId == request.auth.uid));
+
+      // Admins may manage booking status only; patient and booking details
+      // cannot be changed or removed through the client app.
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'updatedAt'])
+        && request.resource.data.status in ['Pending', 'Confirmed', 'Completed', 'Cancelled']
+        && request.resource.data.updatedAt is timestamp;
+
+      allow delete: if false;
+    }
+  }
+}
