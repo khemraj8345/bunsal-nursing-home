@@ -110,7 +110,7 @@ export default function AuthModal({ isOpen, onClose, onSuccessMessage, initialMo
       if (err.code === 'auth/email-already-in-use') {
         setError('This email address is already registered. Please sign in instead.');
       } else if (err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
-        if (formData.email.trim().toLowerCase() === 'pririsahu8@gmail.com') {
+        if (formData.email.trim().toLowerCase() === 'hittu251085@gmail.com') {
           setError('Firebase has not accepted this admin email/password yet. Create or reset this Email/Password account in Firebase Authentication first. Once Firebase signs it in, the admin portal opens automatically.');
         } else {
           setError('Invalid email or password credentials.');

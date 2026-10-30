@@ -55,7 +55,7 @@ export default function App() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
-      if (user?.email?.toLowerCase() === 'pririsahu8@gmail.com') {
+      if (user?.email?.toLowerCase() === 'hittu251085@gmail.com') {
         setViewMode('admin');
         window.history.replaceState({ view: 'admin' }, '', '#admin');
       }

@@ -5,7 +5,7 @@ import {
   sendEmailVerification, serverTimestamp, updateDoc, doc
 } from '../firebase/config';
 
-const ADMIN_EMAIL = 'pririsahu8@gmail.com';
+const ADMIN_EMAIL = 'hittu251085@gmail.com';
 const STATUSES = ['Pending', 'Confirmed', 'Completed', 'Cancelled'];
 const EMPTY_BOOKING = {
   fullName: '',
