@@ -44,7 +44,7 @@ service cloud.firestore {
     }
 
     match /users/{userId} {
-      allow read: if ownsUser(userId);
+      allow read: if ownsUser(userId) || isAdmin();
       allow create, update: if ownsUser(userId)
         && request.resource.data.uid == userId
         && request.resource.data.keys().hasAll(['uid', 'fullName', 'email', 'lastLogin'])

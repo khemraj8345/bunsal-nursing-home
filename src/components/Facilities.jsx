@@ -69,53 +69,53 @@ export default function Facilities({ onSelectImage, onOpenFacility }) {
   ];
 
   return (
-    <section id="facilities" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <section id="facilities" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
       
       {/* Section Header */}
-      <div class="max-w-3xl mb-12 space-y-3">
-        <div class="inline-flex items-center gap-2 text-xs font-bold text-[#0284c7] tracking-wider uppercase">
-          <span class="w-2 h-2 rounded-full bg-[#0284c7]"></span>
+      <div className="max-w-3xl mb-12 space-y-3">
+        <div className="inline-flex items-center gap-2 text-xs font-bold text-[#0284c7] tracking-wider uppercase">
+          <span className="w-2 h-2 rounded-full bg-[#0284c7]"></span>
           <span>INFRASTRUCTURE & SAFETY</span>
         </div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0c2b48] tracking-tight">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0c2b48] tracking-tight">
           Hospital Facilities & Diagnostic Equipment
         </h2>
-        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+        <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
           Explore real photos of our surgical operating theatre, sterile IVF laboratory, digital radiology suites, and OPD consultation chambers in Jagdalpur.
         </p>
       </div>
 
       {/* Facilities Grid */}
-      <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {facilities.map((fac) => (
           <button
             type="button"
             key={fac.id}
             onClick={() => (onOpenFacility ? onOpenFacility(fac) : onSelectImage(fac))}
             aria-label={`View details for ${fac.title}`}
-            class="group overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-sky-300 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+            className="group overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-sky-300 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
           >
-            <span class="relative block aspect-video overflow-hidden bg-slate-100">
+            <span className="relative block aspect-video overflow-hidden bg-slate-100">
               <img
                 src={fac.image}
                 alt=""
-                class="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+                className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
               />
-              <span class="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/60 bg-white/90 text-[#0c2b48] shadow-md transition-all group-hover:bg-[#0c2b48] group-hover:text-white">
-                <ArrowUpRight class="h-5 w-5" />
+              <span className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/60 bg-white/90 text-[#0c2b48] shadow-md transition-all group-hover:bg-[#0c2b48] group-hover:text-white">
+                <ArrowUpRight className="h-5 w-5" />
               </span>
             </span>
 
-            <span class="block p-5 sm:p-6">
-                <span class="block text-base font-bold leading-snug text-[#0c2b48] transition-colors group-hover:text-[#0284c7] sm:text-lg">
+            <span className="block p-5 sm:p-6">
+                <span className="block text-base font-bold leading-snug text-[#0c2b48] transition-colors group-hover:text-[#0284c7] sm:text-lg">
                   {fac.title}
                 </span>
-                <span class="mt-2 block line-clamp-2 text-sm font-normal leading-relaxed text-slate-600">
+                <span className="mt-2 block line-clamp-2 text-sm font-normal leading-relaxed text-slate-600">
                   {fac.description}
                 </span>
-                <span class="mt-5 flex items-center justify-between border-t border-slate-100 pt-4 text-xs font-bold text-[#0284c7]">
+                <span className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4 text-xs font-bold text-[#0284c7]">
                   <span>View facility details</span>
-                  <ArrowUpRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
             </span>
           </button>

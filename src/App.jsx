@@ -210,31 +210,31 @@ export default function App() {
   };
 
   return (
-    <div id="top" class="min-h-screen bg-[#f6f8fd] flex flex-col font-sans selection:bg-[#0284c7] selection:text-white relative">
+    <div id="top" className="min-h-screen bg-[#f6f8fd] flex flex-col font-sans selection:bg-[#0284c7] selection:text-white relative">
       
       {/* Toast Alert Message */}
       {toastMessage && (
         <div
           role="status"
           aria-live="polite"
-          class="fixed inset-x-4 top-24 z-[60] mx-auto flex max-w-md items-start gap-3 rounded-2xl border border-sky-100 bg-white/95 p-4 text-left shadow-[0_18px_50px_-18px_rgba(12,43,72,0.45)] backdrop-blur-xl animate-toast-enter sm:left-auto sm:right-6 sm:inset-x-auto"
+          className="fixed inset-x-4 top-24 z-[60] mx-auto flex max-w-md items-start gap-3 rounded-2xl border border-sky-100 bg-white/95 p-4 text-left shadow-[0_18px_50px_-18px_rgba(12,43,72,0.45)] backdrop-blur-xl animate-toast-enter sm:left-auto sm:right-6 sm:inset-x-auto"
         >
-          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-700 ring-1 ring-sky-100">
-            <ShieldCheck class="h-5 w-5" aria-hidden="true" />
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-700 ring-1 ring-sky-100">
+            <ShieldCheck className="h-5 w-5" aria-hidden="true" />
           </span>
-          <div class="min-w-0 flex-1 pt-0.5">
-            <p class="text-sm font-bold leading-5 text-[#0c2b48]">One quick step</p>
-            <p class="mt-1 text-xs font-medium leading-5 text-slate-600">{toastMessage}</p>
+          <div className="min-w-0 flex-1 pt-0.5">
+            <p className="text-sm font-bold leading-5 text-[#0c2b48]">One quick step</p>
+            <p className="mt-1 text-xs font-medium leading-5 text-slate-600">{toastMessage}</p>
           </div>
           <button
             type="button"
             onClick={() => setToastMessage('')}
             aria-label="Dismiss notification"
-            class="-mr-1 -mt-1 rounded-lg p-2 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
+            className="-mr-1 -mt-1 rounded-lg p-2 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
           >
-            <X class="h-4 w-4" aria-hidden="true" />
+            <X className="h-4 w-4" aria-hidden="true" />
           </button>
-          <span class="toast-progress" aria-hidden="true" />
+          <span className="toast-progress" aria-hidden="true" />
         </div>
       )}
 
@@ -250,7 +250,7 @@ export default function App() {
       />
 
       {/* Main Home Content (Kept mounted in DOM, hidden when on sub-page for zero-lag scroll restoration) */}
-      <main class={`flex-grow space-y-4 ${viewMode === 'home' ? '' : 'hidden'}`}>
+      <main className={`flex-grow space-y-4 ${viewMode === 'home' ? '' : 'hidden'}`}>
         {/* Breadcrumb Navigation */}
         <Breadcrumb />
 

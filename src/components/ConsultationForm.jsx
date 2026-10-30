@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MapPin, Clock, Send, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { MapPin, Clock, Send } from 'lucide-react';
 import { hospitalAddress, hospitalMapsUrl } from '../data/hospitalLocation';
 
 import { db, collection, addDoc, serverTimestamp } from '../firebase/config';
@@ -23,7 +23,7 @@ export default function ConsultationForm({ selectedCategory, selectedDoctor, sel
     if (currentUser?.displayName && !formData.fullName) {
       setFormData((prev) => ({ ...prev, fullName: currentUser.displayName }));
     }
-  }, [currentUser]);
+  }, [currentUser, formData.fullName]);
 
   useEffect(() => {
     setFormData((prev) => {
@@ -164,47 +164,47 @@ export default function ConsultationForm({ selectedCategory, selectedDoctor, sel
   };
 
   return (
-    <section id="booking-form" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-      <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+    <section id="booking-form" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         
         {/* Left Column: Context & Emergency Box & Address */}
-        <div class="lg:col-span-5 space-y-6">
+        <div className="lg:col-span-5 space-y-6">
           
-          <div class="space-y-2">
-            <div class="inline-flex items-center gap-2 text-xs font-bold text-[#0284c7] tracking-wider uppercase">
-              <span class="w-2 h-2 rounded-full bg-[#0284c7]"></span>
+          <div className="space-y-2">
+            <div className="inline-flex items-center gap-2 text-xs font-bold text-[#0284c7] tracking-wider uppercase">
+              <span className="w-2 h-2 rounded-full bg-[#0284c7]"></span>
               <span>DIRECT BOOKING LINE</span>
             </div>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0c2b48] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0c2b48] tracking-tight">
               Book Your Clinical Consultation
             </h2>
-            <p class="text-slate-600 text-sm leading-relaxed">
+            <p className="text-slate-600 text-sm leading-relaxed">
               We respect your personal schedule and privacy. Request an initial consultation or follow-up with our department specialists, and our team will coordinate the timing.
             </p>
           </div>
 
           {/* Address & Hours Cards */}
-          <div class="space-y-3">
+          <div className="space-y-3">
             <a
               href={hospitalMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Open Bansal Nursing Home location in Google Maps: ${hospitalAddress}`}
-              class="bg-white rounded-xl p-4 border border-slate-200/80 shadow-sm flex items-start gap-3 transition-colors hover:border-sky-300 hover:bg-sky-50/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
+              className="bg-white rounded-xl p-4 border border-slate-200/80 shadow-sm flex items-start gap-3 transition-colors hover:border-sky-300 hover:bg-sky-50/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
             >
-              <MapPin class="w-5 h-5 text-[#0284c7] shrink-0 mt-0.5" />
+              <MapPin className="w-5 h-5 text-[#0284c7] shrink-0 mt-0.5" />
               <div>
-                <h4 class="text-xs font-bold text-[#0c2b48]">Bansal Nursing Home & IVF Center</h4>
-                <p class="text-xs text-slate-500 mt-0.5">{hospitalAddress}</p>
-                <p class="mt-1 text-[10px] font-semibold text-[#0284c7]">Open in Google Maps</p>
+                <h4 className="text-xs font-bold text-[#0c2b48]">Bansal Nursing Home & IVF Center</h4>
+                <p className="text-xs text-slate-500 mt-0.5">{hospitalAddress}</p>
+                <p className="mt-1 text-[10px] font-semibold text-[#0284c7]">Open in Google Maps</p>
               </div>
             </a>
 
-            <div class="bg-white rounded-xl p-4 border border-slate-200/80 shadow-sm flex items-start gap-3">
-              <Clock class="w-5 h-5 text-[#0284c7] shrink-0 mt-0.5" />
+            <div className="bg-white rounded-xl p-4 border border-slate-200/80 shadow-sm flex items-start gap-3">
+              <Clock className="w-5 h-5 text-[#0284c7] shrink-0 mt-0.5" />
               <div>
-                <h4 class="text-xs font-bold text-[#0c2b48]">OPD Operating Hours</h4>
-                <p class="text-xs text-slate-500 mt-0.5">
+                <h4 className="text-xs font-bold text-[#0c2b48]">OPD Operating Hours</h4>
+                <p className="text-xs text-slate-500 mt-0.5">
                   OPD Hours: Monday to Saturday | 10:00 AM - 7:00 PM
                 </p>
               </div>
@@ -214,36 +214,36 @@ export default function ConsultationForm({ selectedCategory, selectedDoctor, sel
         </div>
 
         {/* Right Column: Appointment Form Container */}
-        <div class="lg:col-span-7">
-          <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-xl relative">
+        <div className="lg:col-span-7">
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-xl relative">
 
             {!currentUser ? (
-              <div class="mb-5 flex flex-col gap-3 rounded-xl border border-sky-200 bg-sky-50 p-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="mb-5 flex flex-col gap-3 rounded-xl border border-sky-200 bg-sky-50 p-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <p class="text-sm font-bold text-[#0c2b48]">Sign in before booking</p>
-                  <p class="mt-1 text-xs leading-relaxed text-slate-600">Create an account or sign in to save and view your appointment requests.</p>
+                  <p className="text-sm font-bold text-[#0c2b48]">Sign in before booking</p>
+                  <p className="mt-1 text-xs leading-relaxed text-slate-600">Create an account or sign in to save and view your appointment requests.</p>
                 </div>
                 <button
                   type="button"
                   onClick={() => onRequireAuth?.('Sign in or register to continue with your appointment request.')}
-                  class="shrink-0 rounded-lg bg-[#0c2b48] px-4 py-2.5 text-xs font-bold text-white transition-colors hover:bg-[#113a60]"
+                  className="shrink-0 rounded-lg bg-[#0c2b48] px-4 py-2.5 text-xs font-bold text-white transition-colors hover:bg-[#113a60]"
                 >
                   Sign In / Register
                 </button>
               </div>
             ) : (
-              <p class="mb-5 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-xs font-semibold text-emerald-800">
+              <p className="mb-5 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-xs font-semibold text-emerald-800">
                 Signed in as {currentUser.email || currentUser.displayName}
               </p>
             )}
             
-            <form onSubmit={handleSubmit} class="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-5">
               
               {/* Row 1: Name & Phone */}
-              <div class="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 mb-1.5">
-                    Patient Full Name <span class="text-rose-500">*</span>
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                    Patient Full Name <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -251,20 +251,20 @@ export default function ConsultationForm({ selectedCategory, selectedDoctor, sel
                     placeholder="Enter full name"
                     value={formData.fullName}
                     onChange={handleChange}
-                    class={`w-full px-3.5 py-2.5 bg-slate-50/70 border rounded-xl text-xs font-medium text-slate-800 focus:bg-white focus:outline-none focus:ring-1 transition-all ${
+                    className={`w-full px-3.5 py-2.5 bg-slate-50/70 border rounded-xl text-xs font-medium text-slate-800 focus:bg-white focus:outline-none focus:ring-1 transition-all ${
                       errors.fullName
                         ? 'border-rose-400 focus:ring-rose-400'
                         : 'border-slate-200 focus:border-[#0284c7] focus:ring-[#0284c7]'
                     }`}
                   />
                   {errors.fullName && (
-                    <p class="text-[11px] text-rose-500 mt-1">{errors.fullName}</p>
+                    <p className="text-[11px] text-rose-500 mt-1">{errors.fullName}</p>
                   )}
                 </div>
 
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 mb-1.5">
-                    Contact Phone Number <span class="text-rose-500">*</span>
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                    Contact Phone Number <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="tel"
@@ -272,29 +272,29 @@ export default function ConsultationForm({ selectedCategory, selectedDoctor, sel
                     placeholder="Enter 10-digit phone number"
                     value={formData.phone}
                     onChange={handleChange}
-                    class={`w-full px-3.5 py-2.5 bg-slate-50/70 border rounded-xl text-xs font-medium text-slate-800 focus:bg-white focus:outline-none focus:ring-1 transition-all ${
+                    className={`w-full px-3.5 py-2.5 bg-slate-50/70 border rounded-xl text-xs font-medium text-slate-800 focus:bg-white focus:outline-none focus:ring-1 transition-all ${
                       errors.phone
                         ? 'border-rose-400 focus:ring-rose-400'
                         : 'border-slate-200 focus:border-[#0284c7] focus:ring-[#0284c7]'
                     }`}
                   />
                   {errors.phone && (
-                    <p class="text-[11px] text-rose-500 mt-1">{errors.phone}</p>
+                    <p className="text-[11px] text-rose-500 mt-1">{errors.phone}</p>
                   )}
                 </div>
               </div>
 
               {/* Row 2: Category & Doctor */}
-              <div class="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 mb-1.5">
-                    Service Category <span class="text-rose-500">*</span>
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                    Service Category <span className="text-rose-500">*</span>
                   </label>
                   <select
                     name="category"
                     value={formData.category}
                     onChange={handleChange}
-                    class={`w-full px-3.5 py-2.5 bg-slate-50/70 border rounded-xl text-xs font-medium text-slate-800 focus:bg-white focus:outline-none focus:ring-1 transition-all ${
+                    className={`w-full px-3.5 py-2.5 bg-slate-50/70 border rounded-xl text-xs font-medium text-slate-800 focus:bg-white focus:outline-none focus:ring-1 transition-all ${
                       errors.category
                         ? 'border-rose-400 focus:ring-rose-400'
                         : 'border-slate-200 focus:border-[#0284c7] focus:ring-[#0284c7]'
@@ -317,19 +317,19 @@ export default function ConsultationForm({ selectedCategory, selectedDoctor, sel
                     <option value="Women's Preventive Health">Women's Preventive Health</option>
                   </select>
                   {errors.category && (
-                    <p class="text-[11px] text-rose-500 mt-1">{errors.category}</p>
+                    <p className="text-[11px] text-rose-500 mt-1">{errors.category}</p>
                   )}
                 </div>
 
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 mb-1.5">
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
                     Preferred Specialist
                   </label>
                   <select
                     name="doctor"
                     value={formData.doctor}
                     onChange={handleChange}
-                    class="w-full px-3.5 py-2.5 bg-slate-50/70 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:bg-white focus:outline-none focus:border-[#0284c7] focus:ring-1 focus:ring-[#0284c7] transition-all"
+                    className="w-full px-3.5 py-2.5 bg-slate-50/70 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:bg-white focus:outline-none focus:border-[#0284c7] focus:ring-1 focus:ring-[#0284c7] transition-all"
                   >
                     <option value="First Available Specialist">First Available Specialist</option>
                     <option value="Dr. Mamta Bansal (Senior Obstetrician & Laparoscopic Surgeon)">Dr. Mamta Bansal (Senior Obstetrician & Laparoscopic Surgeon)</option>
@@ -340,10 +340,10 @@ export default function ConsultationForm({ selectedCategory, selectedDoctor, sel
               </div>
 
               {/* Row 3: Date & Time Window */}
-              <div class="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 mb-1.5">
-                    Preferred Date <span class="text-rose-500">*</span>
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                    Preferred Date <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="date"
@@ -351,26 +351,26 @@ export default function ConsultationForm({ selectedCategory, selectedDoctor, sel
                     min={new Date().toISOString().split('T')[0]}
                     value={formData.preferredDate}
                     onChange={handleChange}
-                    class={`w-full px-3.5 py-2.5 bg-slate-50/70 border rounded-xl text-xs font-medium text-slate-800 focus:bg-white focus:outline-none focus:ring-1 transition-all ${
+                    className={`w-full px-3.5 py-2.5 bg-slate-50/70 border rounded-xl text-xs font-medium text-slate-800 focus:bg-white focus:outline-none focus:ring-1 transition-all ${
                       errors.preferredDate
                         ? 'border-rose-400 focus:ring-rose-400'
                         : 'border-slate-200 focus:border-[#0284c7] focus:ring-[#0284c7]'
                     }`}
                   />
                   {errors.preferredDate && (
-                    <p class="text-[11px] text-rose-500 mt-1">{errors.preferredDate}</p>
+                    <p className="text-[11px] text-rose-500 mt-1">{errors.preferredDate}</p>
                   )}
                 </div>
 
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 mb-1.5">
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
                     Preferred Time Window
                   </label>
                   <select
                     name="timeWindow"
                     value={formData.timeWindow}
                     onChange={handleChange}
-                    class="w-full px-3.5 py-2.5 bg-slate-50/70 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:bg-white focus:outline-none focus:border-[#0284c7] focus:ring-1 focus:ring-[#0284c7] transition-all"
+                    className="w-full px-3.5 py-2.5 bg-slate-50/70 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:bg-white focus:outline-none focus:border-[#0284c7] focus:ring-1 focus:ring-[#0284c7] transition-all"
                   >
                     <option value="Morning: 09:00 AM - 01:00 PM">Morning: 09:00 AM - 01:00 PM</option>
                     <option value="Afternoon: 01:00 PM - 04:00 PM">Afternoon: 01:00 PM - 04:00 PM</option>
@@ -381,7 +381,7 @@ export default function ConsultationForm({ selectedCategory, selectedDoctor, sel
 
               {/* Row 4: Brief Concern */}
               <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1.5">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">
                   Brief Medical Concern & History (Confidential)
                 </label>
                 <textarea
@@ -390,16 +390,16 @@ export default function ConsultationForm({ selectedCategory, selectedDoctor, sel
                   placeholder="Mention any specific symptoms, prior medical reports, or questions you wish to discuss..."
                   value={formData.concern}
                   onChange={handleChange}
-                  class="w-full px-3.5 py-2.5 bg-slate-50/70 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:bg-white focus:outline-none focus:border-[#0284c7] focus:ring-1 focus:ring-[#0284c7] transition-all resize-none"
+                  className="w-full px-3.5 py-2.5 bg-slate-50/70 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:bg-white focus:outline-none focus:border-[#0284c7] focus:ring-1 focus:ring-[#0284c7] transition-all resize-none"
                 ></textarea>
               </div>
 
               {/* Submit Button */}
               {submitError && (
-                <div role="alert" class="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-xs font-medium leading-relaxed text-rose-800">
+                <div role="alert" className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-xs font-medium leading-relaxed text-rose-800">
                   {submitError}
                   {submitError.includes('Deploy') && (
-                    <code class="mt-2 block rounded-lg bg-white/70 px-2 py-1 font-mono text-[11px] text-rose-900">
+                    <code className="mt-2 block rounded-lg bg-white/70 px-2 py-1 font-mono text-[11px] text-rose-900">
                       npx firebase-tools deploy --only firestore:rules
                     </code>
                   )}
@@ -408,23 +408,23 @@ export default function ConsultationForm({ selectedCategory, selectedDoctor, sel
               <button
                 type="submit"
                 disabled={isSubmitting}
-                class="w-full inline-flex items-center justify-center gap-2 bg-[#0c2b48] hover:bg-[#113a60] text-white font-bold text-xs sm:text-sm py-3.5 px-6 rounded-xl shadow-md hover:shadow-lg transition-all disabled:opacity-75"
+                className="w-full inline-flex items-center justify-center gap-2 bg-[#0c2b48] hover:bg-[#113a60] text-white font-bold text-xs sm:text-sm py-3.5 px-6 rounded-xl shadow-md hover:shadow-lg transition-all disabled:opacity-75"
               >
                 {isSubmitting ? (
                   <>
-                    <span class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                    <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
                     <span>Processing Request...</span>
                   </>
                 ) : (
                   <>
-                    <Send class="w-4 h-4 text-sky-400" />
+                    <Send className="w-4 h-4 text-sky-400" />
                     <span>Submit Consultation Request</span>
                   </>
                 )}
               </button>
 
               {/* Legal Note */}
-              <p class="text-[11px] text-slate-400 text-center leading-relaxed">
+              <p className="text-[11px] text-slate-400 text-center leading-relaxed">
                 * Your personal health information is strictly confidential. Submitting this form does not form a binding doctor-patient relationship until confirmed by hospital staff.
               </p>
 
