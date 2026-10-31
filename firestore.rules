@@ -14,7 +14,7 @@ service cloud.firestore {
     // verified email prevents someone from registering this address themselves.
     function isAdmin() {
       return signedIn()
-        && request.auth.token.email == 'hittu251085@gmail.com'
+        && request.auth.token.email == 'hittu251086@gmail.com'
         && request.auth.token.email_verified == true;
     }
 

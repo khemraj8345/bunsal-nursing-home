@@ -24,7 +24,7 @@ The web app is configured for Firebase project `bansal-nursing-home-193d7`.
 
 ## Admin portal
 
-- Sign in using the site's normal **Sign In / Register** control. When Firebase authenticates `hittu251085@gmail.com`, the app automatically opens the admin dashboard; there is no public admin button.
+- Sign in using the site's normal **Sign In / Register** control. When Firebase authenticates `hittu251086@gmail.com`, the app automatically opens the admin dashboard; there is no public admin button.
 - Firestore grants admin access only when Firebase reports that account's email as verified.
 - Create the admin identity in Firebase Authentication using the Email/Password provider, then complete Firebase email verification. Do not put the admin password in source code.
 - Admins can read all bookings, change booking status, and create a pending booking. The Firestore rules also enforce admin authorization; hiding the portal in the UI is not the security boundary.

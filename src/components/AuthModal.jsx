@@ -12,6 +12,7 @@ import {
   setDoc, 
   serverTimestamp 
 } from '../firebase/config';
+import { ADMIN_EMAIL } from '../adminConfig';
 
 export default function AuthModal({ isOpen, onClose, onSuccessMessage, initialMode = 'signin' }) {
   const [mode, setMode] = useState(initialMode); // 'signin' | 'signup'
@@ -110,7 +111,7 @@ export default function AuthModal({ isOpen, onClose, onSuccessMessage, initialMo
       if (err.code === 'auth/email-already-in-use') {
         setError('This email address is already registered. Please sign in instead.');
       } else if (err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
-        if (formData.email.trim().toLowerCase() === 'hittu251085@gmail.com') {
+        if (formData.email.trim().toLowerCase() === ADMIN_EMAIL) {
           setError('Firebase has not accepted this admin email/password yet. Create or reset this Email/Password account in Firebase Authentication first. Once Firebase signs it in, the admin portal opens automatically.');
         } else {
           setError('Invalid email or password credentials.');
