@@ -73,10 +73,6 @@ export default function Facilities({ onSelectImage, onOpenFacility }) {
       
       {/* Section Header */}
       <div className="max-w-3xl mb-12 space-y-3">
-        <div className="inline-flex items-center gap-2 text-xs font-bold text-[#0284c7] tracking-wider uppercase">
-          <span className="w-2 h-2 rounded-full bg-[#0284c7]"></span>
-          <span>INFRASTRUCTURE & SAFETY</span>
-        </div>
         <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0c2b48] tracking-tight">
           Hospital Facilities & Diagnostic Equipment
         </h2>
