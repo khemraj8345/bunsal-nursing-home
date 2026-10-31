@@ -33,9 +33,11 @@ export default function Navbar({ onNavigateNav, currentUser, onOpenAuth, onOpenM
             onClick={(e) => handleNavClick(e, 'top')}
             className="flex items-center gap-3 group focus:outline-none shrink-0"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0c2b48] to-[#0284c7] flex items-center justify-center text-white shadow-md shadow-sky-900/10 group-hover:scale-105 transition-transform">
-              <span className="font-bold text-lg">B</span>
-            </div>
+            <img
+              src={`${import.meta.env.BASE_URL}images/hospital-building.jpg`}
+              alt="Bansal Nursing Home exterior"
+              className="h-10 w-10 rounded-xl object-cover ring-1 ring-slate-200 shadow-md group-hover:scale-105 transition-transform"
+            />
             <div className="flex flex-col">
               <span className="text-[17px] sm:text-[19px] font-extrabold tracking-tight text-[#0c2b48] leading-tight flex items-center gap-1.5">
                 Bansal Nursing Home
