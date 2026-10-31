@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, ShieldCheck, UserCheck, Clock } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 
 export default function Hero({ onSelectCategory, onOpenWhatsApp, onScrollToBooking }) {
   return (
@@ -57,27 +57,6 @@ export default function Hero({ onSelectCategory, onOpenWhatsApp, onScrollToBooki
               <span>WhatsApp Inquiry</span>
             </button>
           </div>
-
-          {/* Highlights Row with Red Icons */}
-          <div className="pt-6 border-t border-slate-200/80 flex flex-wrap items-center gap-6 text-slate-700 text-xs font-semibold">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-red-600" />
-              <span>Ethical, Evidence-Based Care</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <UserCheck className="w-4 h-4 text-red-600" />
-              <span>Dedicated Resident Specialists</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-sm">👁️</span>
-              <span>Ophthalmology & Vision Unit</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Clock className="w-4 h-4 text-red-600 animate-pulse" />
-              <span>24/7 Emergency Services</span>
-            </div>
-          </div>
-
         </div>
 
         {/* Right Column: Visual Hero Image Card */}
