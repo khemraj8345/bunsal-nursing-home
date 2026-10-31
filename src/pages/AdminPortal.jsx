@@ -2,10 +2,10 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Activity, ArrowLeft, CalendarDays, Check, Clock3, Filter, LogOut, Plus, RefreshCw, Search, ShieldCheck, X } from 'lucide-react';
 import {
   addDoc, collection, db, getDocs, orderBy, query, where,
-  sendEmailVerification, serverTimestamp, updateDoc, doc
+  sendEmailVerification, serverTimestamp, updateDoc, deleteDoc, doc
 } from '../firebase/config';
+import { ADMIN_EMAIL } from '../adminConfig';
 
-const ADMIN_EMAIL = 'hittu251085@gmail.com';
 const STATUSES = ['Pending', 'Confirmed', 'Completed', 'Cancelled'];
 const EMPTY_BOOKING = {
   fullName: '',
@@ -110,6 +110,25 @@ export default function AdminPortal({ currentUser, onBack, onSignOut }) {
       setNotice(`Appointment ${booking.referenceId || ''} updated to ${status}.`);
     } catch (err) {
       console.error('Admin booking update failed:', err);
+      setError(firebaseErrorMessage(err));
+    } finally {
+      setSavingId('');
+    }
+  };
+
+  const removeBooking = async (booking) => {
+    const reference = booking.referenceId || booking.id.slice(0, 8);
+    if (!window.confirm(`Remove appointment ${reference}? This cannot be undone.`)) return;
+
+    setSavingId(booking.id);
+    setError('');
+    setNotice('');
+    try {
+      await deleteDoc(doc(db, 'bookings', booking.id));
+      setBookings((previous) => previous.filter((item) => item.id !== booking.id));
+      setNotice(`Appointment ${reference} removed.`);
+    } catch (err) {
+      console.error('Admin booking deletion failed:', err);
       setError(firebaseErrorMessage(err));
     } finally {
       setSavingId('');
@@ -291,13 +310,35 @@ export default function AdminPortal({ currentUser, onBack, onSignOut }) {
                           </div>
                           {booking.concern && <p className="mt-3 rounded-lg bg-slate-50 p-3 text-xs leading-5 text-slate-600">{booking.concern}</p>}
                         </div>
-                        <label className="flex shrink-0 items-center gap-2 text-[11px] font-bold text-slate-500">
-                          Update status
-                          <select disabled={savingId === booking.id} value={booking.status || 'Pending'} onChange={(event) => updateStatus(booking, event.target.value)} className="rounded-lg border border-slate-200 bg-white px-2.5 py-2 text-xs font-bold text-slate-700 outline-none focus:border-sky-500 disabled:opacity-50">
-                            {STATUSES.map((status) => <option key={status}>{status}</option>)}
-                          </select>
+                        <div className="flex shrink-0 flex-wrap items-center gap-2">
+                          {booking.status === 'Pending' && (
+                            <button
+                              type="button"
+                              disabled={savingId === booking.id}
+                              onClick={() => updateStatus(booking, 'Confirmed')}
+                              aria-label={`Approve appointment ${booking.referenceId || booking.id.slice(0, 8)}`}
+                              className="rounded-lg bg-emerald-600 px-3 py-2 text-xs font-bold text-white hover:bg-emerald-700 disabled:opacity-50"
+                            >
+                              Approve
+                            </button>
+                          )}
+                          <label className="flex items-center gap-2 text-[11px] font-bold text-slate-500">
+                            Status
+                            <select disabled={savingId === booking.id} value={booking.status || 'Pending'} onChange={(event) => updateStatus(booking, event.target.value)} className="rounded-lg border border-slate-200 bg-white px-2.5 py-2 text-xs font-bold text-slate-700 outline-none focus:border-sky-500 disabled:opacity-50">
+                              {STATUSES.map((status) => <option key={status}>{status}</option>)}
+                            </select>
+                          </label>
+                          <button
+                            type="button"
+                            disabled={savingId === booking.id}
+                            onClick={() => removeBooking(booking)}
+                            aria-label={`Remove appointment ${booking.referenceId || booking.id.slice(0, 8)}`}
+                            className="rounded-lg border border-rose-200 px-3 py-2 text-xs font-bold text-rose-700 hover:bg-rose-50 disabled:opacity-50"
+                          >
+                            Remove
+                          </button>
                           {savingId === booking.id && <RefreshCw className="h-3.5 w-3.5 animate-spin text-sky-600" />}
-                        </label>
+                        </div>
                       </div>
                     </article>
                   ))}

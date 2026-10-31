@@ -67,14 +67,13 @@ service cloud.firestore {
       allow create: if validBooking()
         && (isAdmin() || (signedIn() && request.resource.data.userId == request.auth.uid));
 
-      // Admins may manage booking status only; patient and booking details
-      // cannot be changed or removed through the client app.
+      // Admins may change booking status, and only admins may remove bookings.
       allow update: if isAdmin()
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'updatedAt'])
         && request.resource.data.status in ['Pending', 'Confirmed', 'Completed', 'Cancelled']
         && request.resource.data.updatedAt is timestamp;
 
-      allow delete: if false;
+      allow delete: if isAdmin();
     }
   }
 }

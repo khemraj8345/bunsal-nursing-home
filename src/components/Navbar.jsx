@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { CalendarDays, Menu, X, LogIn, LogOut, FileText, ChevronDown } from 'lucide-react';
+import { ADMIN_EMAIL } from '../adminConfig';
 
 export default function Navbar({ onNavigateNav, currentUser, onOpenAuth, onOpenMyBookings, onSignOut, onOpenAdmin }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
 
+  const canAccessAdmin = currentUser?.emailVerified === true
+    && currentUser.email?.toLowerCase() === ADMIN_EMAIL;
   const navLinks = [
     { name: 'Home', sectionId: 'top' },
     { name: 'Specialities & Procedures', sectionId: 'specialities-procedures' },
     { name: 'Doctors', sectionId: 'doctors' },
     { name: 'Facilities', sectionId: 'facilities' },
-    { name: 'Admin', admin: true }
+    ...(canAccessAdmin ? [{ name: 'Admin', admin: true }] : [])
   ];
 
   const handleNavClick = (e, sectionId) => {

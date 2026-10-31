@@ -23,6 +23,7 @@ import ProceduresListPage from './pages/ProceduresListPage';
 import FacilityDetailPage from './pages/FacilityDetailPage';
 import DoctorDetailPage from './pages/DoctorDetailPage';
 import AdminPortal from './pages/AdminPortal';
+import { ADMIN_EMAIL } from './adminConfig';
 
 import { auth, onAuthStateChanged, signOut } from './firebase/config';
 
@@ -55,7 +56,7 @@ export default function App() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
-      if (user?.email?.toLowerCase() === 'hittu251085@gmail.com') {
+      if (user?.email?.toLowerCase() === ADMIN_EMAIL) {
         setViewMode('admin');
         window.history.replaceState({ view: 'admin' }, '', '#admin');
       }
