@@ -252,18 +252,22 @@ export default function AdminPortal({ currentUser, onBack, onSignOut }) {
                 <div className="flex flex-1 flex-col gap-2 sm:flex-row">
                   <label className="relative flex-1">
                     <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-                    <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search patient, phone, reference…" className="w-full rounded-xl border border-slate-200 py-2.5 pl-9 pr-3 text-xs outline-none focus:border-sky-500" />
+                    <input aria-label="Search appointments" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search patient, phone, reference…" className="min-h-11 w-full rounded-xl border border-slate-200 py-2.5 pl-9 pr-3 text-sm outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
                   </label>
                   <label className="relative">
                     <Filter className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-                    <select value={filter} onChange={(event) => setFilter(event.target.value)} className="w-full appearance-none rounded-xl border border-slate-200 bg-white py-2.5 pl-9 pr-8 text-xs font-semibold text-slate-700 outline-none focus:border-sky-500 sm:w-40">
+                    <select aria-label="Filter appointments by status" value={filter} onChange={(event) => setFilter(event.target.value)} className="min-h-11 w-full appearance-none rounded-xl border border-slate-200 bg-white py-2.5 pl-9 pr-8 text-sm font-semibold text-slate-700 outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 sm:w-44">
                       {['All', ...STATUSES].map((status) => <option key={status}>{status}</option>)}
                     </select>
                   </label>
                 </div>
-                <button onClick={() => { setShowNewBooking((open) => !open); setError(''); }} className="inline-flex items-center justify-center gap-2 rounded-xl bg-sky-700 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-sky-800">
+                <button onClick={() => { setShowNewBooking((open) => !open); setError(''); }} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-sky-700 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-sky-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">
                   {showNewBooking ? <X className="h-4 w-4" /> : <Plus className="h-4 w-4" />}{showNewBooking ? 'Close form' : 'Add booking'}
                 </button>
+              </div>
+
+              <div className="border-b border-slate-100 px-4 py-2 text-xs text-slate-500" aria-live="polite">
+                Showing <span className="font-bold text-slate-700">{visibleBookings.length}</span> of {bookings.length} appointments
               </div>
 
               {showNewBooking && (
@@ -290,7 +294,16 @@ export default function AdminPortal({ currentUser, onBack, onSignOut }) {
               {loading ? (
                 <div className="p-12 text-center text-sm text-slate-500"><RefreshCw className="mx-auto mb-3 h-5 w-5 animate-spin text-sky-600" />Loading appointments…</div>
               ) : visibleBookings.length === 0 ? (
-                <div className="p-12 text-center text-sm text-slate-500">No appointment requests match this view.</div>
+                <div className="p-10 text-center sm:p-12">
+                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-50 text-sky-700"><Search className="h-5 w-5" /></div>
+                  <h3 className="mt-4 text-sm font-bold text-slate-800">{bookings.length ? 'No matching appointments' : 'No appointments yet'}</h3>
+                  <p className="mx-auto mt-1 max-w-sm text-sm leading-6 text-slate-500">{bookings.length ? 'Try a different search or status filter to find the appointment.' : 'New patient requests will appear here when they are submitted.'}</p>
+                  {(search || filter !== 'All') && (
+                    <button type="button" onClick={() => { setSearch(''); setFilter('All'); }} className="mt-4 inline-flex min-h-11 items-center justify-center rounded-xl border border-slate-200 bg-white px-4 text-sm font-bold text-slate-700 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">
+                      Clear search and filters
+                    </button>
+                  )}
+                </div>
               ) : (
                 <div className="divide-y divide-slate-100">
                   {visibleBookings.map((booking) => (
