@@ -240,15 +240,17 @@ export default function App() {
       )}
 
       {/* Top Navbar with Firebase Auth State & Navigation Handlers */}
-      <Navbar
-        onOpenEmergency={() => setIsEmergencyOpen(true)}
-        onNavigateNav={handleNavigateNav}
-        currentUser={currentUser}
-        onOpenAuth={(mode) => { setAuthModalMode(mode); setIsAuthModalOpen(true); }}
-        onOpenMyBookings={() => setIsBookingsModalOpen(true)}
-        onSignOut={handleSignOut}
-        onOpenAdmin={handleOpenAdmin}
-      />
+      {viewMode !== 'admin' && (
+        <Navbar
+          onOpenEmergency={() => setIsEmergencyOpen(true)}
+          onNavigateNav={handleNavigateNav}
+          currentUser={currentUser}
+          onOpenAuth={(mode) => { setAuthModalMode(mode); setIsAuthModalOpen(true); }}
+          onOpenMyBookings={() => setIsBookingsModalOpen(true)}
+          onSignOut={handleSignOut}
+          onOpenAdmin={handleOpenAdmin}
+        />
+      )}
 
       {/* Main Home Content (Kept mounted in DOM, hidden when on sub-page for zero-lag scroll restoration) */}
       <main className={`flex-grow space-y-4 ${viewMode === 'home' ? '' : 'hidden'}`}>
@@ -359,9 +361,9 @@ export default function App() {
       )}
 
       {/* Footer */}
-      <Footer
-        onOpenEmergency={() => setIsEmergencyOpen(true)}
-      />
+      {viewMode !== 'admin' && (
+        <Footer onOpenEmergency={() => setIsEmergencyOpen(true)} />
+      )}
 
       {/* Firebase Auth Modal (Sign In / Register / Google Auth) */}
       <AuthModal
